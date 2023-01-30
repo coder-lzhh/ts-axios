@@ -1,35 +1,12 @@
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from './teyps'
-import { buildURL } from './helpers/url'
-import { transformRequest, transformResponse } from './helpers/data'
-import { processHeaders } from './helpers/headers'
-import xhr from './xhr'
+import { AxiosInstance } from './teyps'
+import Axios from './core/Axios'
+import { extend } from './helpers/util'
 
-function axios(config: AxiosRequestConfig): AxiosPromise {
-  processConfig(config)
-  return xhr(config).then(res => {
-    return transformResponsetData(res)
-  })
+function createInstenca(): AxiosInstance {
+  const context = new Axios()
+  const instance = Axios.prototype.request.bind(context)
+  extend(instance, context)
+  return instance as AxiosInstance
 }
-
-function processConfig(config: AxiosRequestConfig): void {
-  config.url = transformUrl(config)
-  config.headers = transformHeaders(config)
-  config.data = transformRequestData(config)
-}
-function transformUrl(config: AxiosRequestConfig): any {
-  const { url, params } = config
-  return buildURL(url, params)
-}
-function transformRequestData(config: AxiosRequestConfig): any {
-  return transformRequest(config.data)
-}
-function transformResponsetData(res: AxiosResponse): AxiosResponse {
-  res.data = transformResponse(res.data)
-  return res
-}
-function transformHeaders(config: AxiosRequestConfig): any {
-  const { headers = {}, data } = config
-  return processHeaders(headers, data)
-}
-
+const axios = createInstenca()
 export default axios

@@ -79,6 +79,36 @@ router.get('/error/timeout', function (req, res) {
 })
 
 //#endregion
+
+
+
+//#region extend
+
+router.get('/extend/get', function (req, res) {
+  res.json(req.query)
+})
+
+router.post('/extend/post', function (req, res) {
+  res.json(req.body)
+})
+router.options('/extend/options', function (req, res) {
+  res.json('ok')
+})
+router.delete('/extend/delete', function (req, res) {
+  res.json('ok')
+})
+router.head('/extend/head', function (req, res) {
+  res.json('ok')
+})
+router.put('/extend/put', function (req, res) {
+  res.json(req.body)
+})
+router.patch('/extend/patch', function (req, res) {
+  res.json(req.body)
+})
+
+//#endregion
+
 app.use(router)
 
 const port = process.env.PORT || 8080
