@@ -10,7 +10,7 @@ export function isPlainObject(val: any): val is Object {
 }
 
 export function extend<T, U>(to: T, from: U): T & U {
-  //extend 的最终目的是把 from 里的属性都扩展到 to 中
+  // extend 的最终目的是把 from 里的属性都扩展到 to 中
   for (const key in from) {
     ;(to as T & U)[key] = from[key] as any
   }
