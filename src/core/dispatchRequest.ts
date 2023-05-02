@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../teyps'
+import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../types'
 import { buildURL } from '../helpers/url'
 import { transformRequest, transformResponse } from '../helpers/data'
 import { processHeaders } from '../helpers/headers'

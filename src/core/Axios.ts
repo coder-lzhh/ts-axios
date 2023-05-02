@@ -5,7 +5,7 @@ import {
   Method,
   RejectedFn,
   ResolvedFn
-} from '../teyps'
+} from '../types'
 import dispatchRequest from './dispatchRequest'
 import InterceptorManager from './interceptorManager'
 

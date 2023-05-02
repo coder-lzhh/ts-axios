@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from '../teyps'
+import { AxiosRequestConfig, AxiosResponse } from '../types'
 
 export class AxiosError extends Error {
   isAxiosError: boolean

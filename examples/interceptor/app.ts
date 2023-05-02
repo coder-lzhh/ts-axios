@@ -27,12 +27,12 @@ axios.interceptors.response.use(res => {
 })
 
 axios.interceptors.response.eject(interceptor)// 删除第二个
-//注意我们拦截器的执行顺序，对于请求拦截器，先执行后添加的，再执行先添加的；而对于响应拦截器，先执行先添加的，后执行后添加的。
+// 注意我们拦截器的执行顺序，对于请求拦截器，先执行后添加的，再执行先添加的；而对于响应拦截器，先执行先添加的，后执行后添加的。
 axios({
   url: '/interceptor/get',
   method: 'get',
   headers: {
-    test: ''//test321
+    test: ''// test321
   }
 }).then((res) => {
   console.log(res)// interceptor13
