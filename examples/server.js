@@ -127,6 +127,16 @@ router.get('/interceptor/get', function (req, res) {
 
 //#endregion
 
+//#region  config
+router.post('/config/post', function (req, res) {
+  res.json(req.body)
+})
+router.get('/config/get', function (req, res) {
+  res.json('config')
+})
+//#endregion
+
+
 app.use(router)
 
 const port = process.env.PORT || 8080
