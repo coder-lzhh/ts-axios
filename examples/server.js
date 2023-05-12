@@ -137,6 +137,20 @@ router.get('/config/get', function (req, res) {
 //#endregion
 
 
+//#region  cancel
+router.post('/cancel/post', function (req, res) {
+  setTimeout(() => {
+    res.json(req.body)
+  }, 1000)
+})
+router.get('/cancel/get', function (req, res) {
+  setTimeout(() => {
+    res.json('cancel')
+  }, 1000)
+})
+//#endregion
+
+
 app.use(router)
 
 const port = process.env.PORT || 8080
