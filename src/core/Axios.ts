@@ -6,7 +6,7 @@ import {
   RejectedFn,
   ResolvedFn
 } from '../types'
-import dispatchRequest from './dispatchRequest'
+import dispatchRequest, { transformUrl } from './dispatchRequest'
 import mergeConfig from './mergeConfig'
 import InterceptorManager from './interceptorManager'
 
@@ -28,6 +28,11 @@ export default class Axios {
       request: new InterceptorManager<AxiosRequestConfig>(),
       response: new InterceptorManager<AxiosResponse>()
     }
+  }
+
+  getUri(config?: AxiosRequestConfig): string {
+    config = mergeConfig(this.defaults, config)
+    return transformUrl(config)
   }
 
   request(url: any, config?: any): AxiosPromise {

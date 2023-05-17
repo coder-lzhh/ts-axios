@@ -25,6 +25,17 @@ export interface AxiosRequestConfig {
   transformRequest?: AxiosTransformer | AxiosTransformer[]
   transformResponse?: AxiosTransformer | AxiosTransformer[]
   cancelToken?: CancelToken
+  withCredentials?: boolean
+  xsrfCookieName?: string
+  xsrfHeaderName?: string
+  auth?: AxiosBasicCredentials
+  validateStatus?: (status: number) => boolean
+  paramsSerializer?: (params: any) => string
+
+  baseURL?: string
+
+  onDownloadProgress?: (e: ProgressEvent) => void
+  onUploadProgress?: (e: ProgressEvent) => void
 
   [propName: string]: any
 }
@@ -46,6 +57,10 @@ export interface AxiosError extends Error {
   isAxiosError: boolean
 }
 
+export interface AxiosClassStatic {
+  new (config: AxiosRequestConfig): Axios
+}
+
 export interface Axios {
   interceptors: {
     request: AxiosInterceptorManager<AxiosRequestConfig>
@@ -60,6 +75,7 @@ export interface Axios {
   post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
   put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
   patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
+  getUri(config?: AxiosRequestConfig): string
 }
 
 export interface AxiosInstance extends Axios {
@@ -72,6 +88,12 @@ export interface AxiosStatic extends AxiosInstance {
   CancelToken: CancelTokenStatic
   Cancel: CancelStatic
   isCancel: (value: any) => boolean
+
+  all<T>(promises: Array<T | Promise<T>>): Promise<T[]>
+
+  spread<T, R>(callback: (...args: T[]) => R): (arr: T[]) => R
+
+  Axios: AxiosClassStatic
 }
 export interface AxiosInterceptorManager<T> {
   use(resolved: ResolvedFn<T>, rejected?: RejectedFn): number
@@ -120,4 +142,9 @@ export interface CancelTokenStatic {
   new (executor: CancelExecutor): CancelToken
 
   source(): CancelTokenSource
+}
+
+export interface AxiosBasicCredentials {
+  username: string
+  password: string
 }

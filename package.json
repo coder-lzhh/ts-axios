@@ -92,6 +92,11 @@
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
+    "qs": "^6.7.0",
+    "connect-multiparty": "^2.2.0",
+    "cookie-parser": "^1.4.4",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
     "husky": "^1.0.1",
     "jest": "^23.6.0",
     "jest-config": "^23.6.0",
@@ -124,5 +129,8 @@
     "tslint-loader": "^3.5.4",
     "express": "^4.16.4",
     "body-parser": "^1.18.3"
+  },
+  "dependencies": {
+    "nprogress": "^0.2.0"
   }
 }
